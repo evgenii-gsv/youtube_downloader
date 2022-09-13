@@ -66,6 +66,7 @@ def download_video_only(video):
 def download_audio_only(video):
     yt_streams = get_best_audio_and_video(video)
     yt_streams[1].download(output_path=output_dir, filename='temp_audio.webm')
+    print('Converting to .mp3...')
     AudioSegment.from_file(f'{output_dir}temp_audio.webm').export(f'{output_dir}{yt.title}.mp3', format='mp3')
     os.remove(f'{output_dir}temp_audio.webm')
     print(f'{yt.title}.mp3 is downloaded')
